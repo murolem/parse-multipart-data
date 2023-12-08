@@ -1,5 +1,10 @@
 # parse-multipart-data
 
+> [!IMPORTANT]  
+> This fork replaces usage of the native Node `Buffer` with a browser-friendly `Buffer` from the [`buffer` npm package](https://www.npmjs.com/package/buffer).
+>
+> The package from this fork can be installed using `npm i git+https://github.com/murolem/parse-multipart-data` command.
+
 A Typescript lib multipart/form-data parser which operates on raw data.
 Forked from [freesoftwarefactory/parse-multipart](https://github.com/freesoftwarefactory/parse-multipart)
 
@@ -41,7 +46,7 @@ than one file in the same payload, that's why it is called: multipart.
 In the next lines you can see a implementation. In this case two key values
 needs to be present:
 
-* body, which can be:
+- body, which can be:
 
 ```bash
 ------WebKitFormBoundaryDtbT5UpPj83kllfw
@@ -52,7 +57,7 @@ hello how are you
 ------WebKitFormBoundaryDtbT5UpPj83kllfw--
 ```
 
-* boundary, the string which serve as a 'separator' between parts, it normally
+- boundary, the string which serve as a 'separator' between parts, it normally
   comes to you via headers. In this case, the boundary is:
 
 ```bash
@@ -62,13 +67,13 @@ hello how are you
 Now, having this two key values then you can implement it:
 
 ```typescript
-const multipart = require('parse-multipart-data');
-const body = "..the multipart raw body..";
-const boundary = "----WebKitFormBoundaryDtbT5UpPj83kllfw";
-const parts = multipart.parse(body,boundary);
+const multipart = require('parse-multipart-data')
+const body = '..the multipart raw body..'
+const boundary = '----WebKitFormBoundaryDtbT5UpPj83kllfw'
+const parts = multipart.parse(body, boundary)
 
 for (let i = 0; i < parts.length; i++) {
-  const part = parts[i];
+  const part = parts[i]
   // will be: { filename: 'A.txt', type: 'text/plain', data: <Buffer 41 41 41 41 42 42 42 42> }
 }
 ```

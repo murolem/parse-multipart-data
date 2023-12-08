@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 /**
  * Multipart Parser (Finite State Machine)
  * usage:
